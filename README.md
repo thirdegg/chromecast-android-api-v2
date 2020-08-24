@@ -1,4 +1,4 @@
-ChromeCast API v2 for Android
+ChromeCast API v2 for Android [![](https://jitpack.io/v/thirdegg/chromecast-android-api-v2.svg)](https://jitpack.io/#thirdegg/chromecast-android-api-v2)
 ======================
 
 This project is forked from [ChromeCast Java API v2](https://github.com/vitalidze/chromecast-java-api-v2)
@@ -14,15 +14,13 @@ Library is available in JitPack. Put lines below into you project's `build.gradl
 
 ```groovy
 repositories {
-// ...
+    // ...
     maven { url 'https://jitpack.io' }
-// ...
 }
 
 dependencies {
-// ...
-    implementation 'com.github.thirdegg:chromecast-android-api-v2:master-SNAPSHOT'
-// ...
+    // ...
+    implementation 'com.github.thirdegg:chromecast-android-api-v2:v0.11.3'
 }
 ```
 
@@ -77,7 +75,7 @@ ChromeCast chromecast = ChromeCasts.get().get(0);
 Status status = chromecast.getStatus();
 // Run application if it's not already running
 if (chromecast.isAppAvailable("APP_ID") && !status.isAppRunning("APP_ID")) {
-  Application app = chromecast.launchApp("APP_ID");
+    Application app = chromecast.launchApp("APP_ID");
 }
 ```
 
@@ -203,8 +201,8 @@ Useful links
 * [Library for Python 2 and 3 to communicate with the Google Chromecast](https://github.com/balloob/pychromecast)
 * [CastV2 API protocol POC implementation in Python](https://github.com/minektur/chromecast-python-poc)
 * [Most recent .proto file for CastV2 protocol](https://github.com/chromium/chromium/blob/master/components/cast_channel/proto/cast_channel.proto)
-* [Implementation of V1 Google ChromeCast protocol](https://github.com/entertailion/Caster),
-* [Implementation of V2 in Node.js](https://github.com/vincentbernat/nodecastor).
+* [Implementation of V1 Google ChromeCast protocol](https://github.com/entertailion/Caster)
+* [Implementation of V2 in Node.js](https://github.com/vincentbernat/nodecastor)
 
 Projects using library
 ----------------------
