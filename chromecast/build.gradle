@@ -26,13 +26,15 @@ android {
         }
     }
 
-    sourceSets {
-        main {
-            proto {
-                srcDir "$projectDir/src/main/resources/protobuf/"
+    /*
+        sourceSets {
+            main {
+                proto {
+                    srcDir "$projectDir/src/main/resources/protobuf/"
+                }
             }
         }
-    }
+     */
 
 }
 
