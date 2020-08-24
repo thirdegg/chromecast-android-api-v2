@@ -1,2 +1,2 @@
 include ':chromecast'
-rootProject.name = "chromecast"
+//rootProject.name = "chromecast"
