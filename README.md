@@ -20,7 +20,7 @@ repositories {
 
 dependencies {
     // ...
-    implementation 'com.github.thirdegg:chromecast-android-api-v2:v0.11.3'
+    implementation 'com.github.thirdegg:chromecast-android-api-v2:v0.11.4'
 }
 ```
 
