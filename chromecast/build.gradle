@@ -1,7 +1,9 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'com.google.protobuf'
+/*
+    apply plugin: 'com.google.protobuf'
+*/
 
 android {
     compileSdkVersion 29
@@ -44,6 +46,7 @@ dependencies {
 
     implementation 'org.jmdns:jmdns:3.5.5'
 
+
     implementation 'com.google.protobuf:protobuf-lite:3.0.0'
 
     implementation 'com.fasterxml.jackson.core:jackson-annotations:2.9.0'
@@ -51,28 +54,30 @@ dependencies {
 
 }
 
-protobuf {
-    protoc {
-        // You still need protoc like in the non-Android case
-        artifact = 'com.google.protobuf:protoc:3.7.0'
-    }
-    plugins {
-        javalite {
-            // The codegen for lite comes as a separate artifact
-            artifact = 'com.google.protobuf:protoc-gen-javalite:3.0.0'
+/*
+    protobuf {
+        protoc {
+            // You still need protoc like in the non-Android case
+            artifact = 'com.google.protobuf:protoc:3.7.0'
         }
-    }
-    generatedFilesBaseDir = "$projectDir/src/main/generated"
-    generateProtoTasks {
-        all().each { task ->
-            task.builtins {
-                // In most cases you don't need the full Java output
-                // if you use the lite output.
-                // remove java
-            }
-            task.plugins {
-                javalite { }
+        plugins {
+            javalite {
+                // The codegen for lite comes as a separate artifact
+                artifact = 'com.google.protobuf:protoc-gen-javalite:3.0.0'
             }
         }
+        generatedFilesBaseDir = "$projectDir/src/main/generated"
+        generateProtoTasks {
+            all().each { task ->
+                task.builtins {
+                    // In most cases you don't need the full Java output
+                    // if you use the lite output.
+                    // remove java
+                }
+                task.plugins {
+                    javalite { }
+                }
+            }
+        }
     }
-}
+ */
