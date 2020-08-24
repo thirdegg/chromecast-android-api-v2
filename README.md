@@ -1,4 +1,4 @@
-ChromeCast API v2 for Android
+ChromeCast API v2 for Android [![](https://jitpack.io/v/thirdegg/chromecast-android-api-v2.svg)](https://jitpack.io/#thirdegg/chromecast-android-api-v2)
 ======================
 
 This project is forked from [ChromeCast Java API v2](https://github.com/vitalidze/chromecast-java-api-v2)
