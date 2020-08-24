@@ -7,6 +7,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 public class AndroidUtils {
+
     public static InetAddress getDeviceIpAddress(WifiManager wifi) {
         InetAddress result = null;
         try {
@@ -16,8 +17,12 @@ public class AndroidUtils {
             // figure out our wifi address, otherwise bail
             WifiInfo wifiinfo = wifi.getConnectionInfo();
             int intaddr = wifiinfo.getIpAddress();
-            byte[] byteaddr = new byte[]{(byte) (intaddr & 0xff), (byte) (intaddr >> 8 & 0xff),
-                    (byte) (intaddr >> 16 & 0xff), (byte) (intaddr >> 24 & 0xff)};
+            byte[] byteaddr = new byte[]{
+                    (byte) (intaddr & 0xff),
+                    (byte) (intaddr >> 8 & 0xff),
+                    (byte) (intaddr >> 16 & 0xff),
+                    (byte) (intaddr >> 24 & 0xff)
+            };
             result = InetAddress.getByAddress(byteaddr);
         } catch (UnknownHostException ex) {
             ex.printStackTrace();
