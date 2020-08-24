@@ -3,61 +3,27 @@ ChromeCast API v2 for Android
 
 This project is forked from [ChromeCast Java API v2](https://github.com/vitalidze/chromecast-java-api-v2)
 
-At the moment I have started implementing this library, there was a java [implementation of V1 Google ChromeCast protocol](https://github.com/entertailion/Caster), which seems to be deprecated and does not work for newly created applications. The new V2 protocol is implemented by tools that come with Cast SDK, which is available for Android, iOS and Chrome Extension as javascript. Also there is a third party [implementation of V2 in Node.js](https://github.com/vincentbernat/nodecastor). This project is a third party implementation of Google ChromeCast V2 protocol in java.
+This fork was created for adaptation to Android OS. The [Google Cast SDK](https://developers.google.com/cast/docs/android_sender) does not provide the ability to work with Chromecast multi-applications. If there is a need for this, you can use this library.
+
+This project is a third party implementation of Google ChromeCast V2 protocol in java.
 
 Install
 -------
 
-Library is available in maven central. Put lines below into you project's `pom.xml` file:
-
-```xml
-<dependencies>
-...
-  <dependency>
-    <groupId>com.thirdegg.chromecast</groupId>
-    <artifactId>api-v2</artifactId>
-    <version>0.11.3</version>
-  </dependency>
-...
-</dependencies>
-```
-
-Or to `build.gradle` (`mavenCentral()` repository should be included in appropriate block):
+Library is available in JitPack. Put lines below into you project's `build.gradle` file:
 
 ```groovy
-dependencies {
+repositories {
 // ...
-    compile 'com.thirdegg.chromecast:api-v2:0.11.3'
+    maven { url 'https://jitpack.io' }
 // ...
 }
-```
 
-Build
------
-
-To build library from sources:
-
-1) Clone github repo
-
-    $ git clone https://github.com/vitalidze/chromecast-java-api-v2.git
-
-2) Change to the cloned repo folder and run `mvn install`
-
-    $ cd chromecast-java-api-v2
-    $ mvn install
-
-3) Then it could be included into project's `pom.xml` from local repository:
-
-```xml
-<dependencies>
-...
-  <dependency>
-    <groupId>su.litvak.chromecast</groupId>
-    <artifactId>api-v2</artifactId>
-    <version>0.11.4-SNAPSHOT</version>
-  </dependency>
-...
-</dependencies>
+dependencies {
+// ...
+    implementation 'com.github.thirdegg:chromecast-android-api-v2:master-SNAPSHOT'
+// ...
+}
 ```
 
 Usage
@@ -66,6 +32,34 @@ Usage
 This is still a work in progress. The API is not stable, the quality is pretty low and there are a lot of bugs.
 
 To use the library, you first need to discover what Chromecast devices are available on the network.
+
+In order to scan the network on the android you need to create multicast lock:
+
+```java
+WifiManager.MulticastLock multicastLock;
+
+@Override
+public void onResume() {
+    //...
+    WifiManager wifi = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+    // get the device ip address
+    final InetAddress deviceIpAddress = AndroidUtils.getDeviceIpAddress(wifi);
+    multicastLock = wifi.createMulticastLock(getClass().getName());
+    multicastLock.setReferenceCounted(true);
+    multicastLock.acquire();
+}
+
+@Override
+public void onPause() {
+    //...
+    if (multicastLock != null) {
+        multicastLock.release();
+        multicastLock = null;
+    }
+}
+```
+
+For start discovery:
 
 ```java
 ChromeCasts.startDiscovery();
@@ -209,6 +203,8 @@ Useful links
 * [Library for Python 2 and 3 to communicate with the Google Chromecast](https://github.com/balloob/pychromecast)
 * [CastV2 API protocol POC implementation in Python](https://github.com/minektur/chromecast-python-poc)
 * [Most recent .proto file for CastV2 protocol](https://github.com/chromium/chromium/blob/master/components/cast_channel/proto/cast_channel.proto)
+* [Implementation of V1 Google ChromeCast protocol](https://github.com/entertailion/Caster),
+* [Implementation of V2 in Node.js](https://github.com/vincentbernat/nodecastor).
 
 Projects using library
 ----------------------
