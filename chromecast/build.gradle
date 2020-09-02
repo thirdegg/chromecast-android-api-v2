@@ -1,9 +1,8 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-/*
-    apply plugin: 'com.google.protobuf'
-*/
+//apply plugin: 'com.google.protobuf'
+
 
 android {
     compileSdkVersion 29
@@ -13,7 +12,7 @@ android {
         minSdkVersion 9
         targetSdkVersion 29
         versionCode 1
-        versionName "0.11.3"
+        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -26,15 +25,20 @@ android {
         }
     }
 
-    /*
-        sourceSets {
-            main {
-                proto {
-                    srcDir "$projectDir/src/main/resources/protobuf/"
-                }
-            }
-        }
-     */
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+
+
+//    sourceSets {
+//        main {
+//            proto {
+//                srcDir "$projectDir/src/main/resources/protobuf/"
+//            }
+//        }
+//    }
+
 
 }
 
@@ -56,30 +60,29 @@ dependencies {
 
 }
 
-/*
-    protobuf {
-        protoc {
-            // You still need protoc like in the non-Android case
-            artifact = 'com.google.protobuf:protoc:3.7.0'
-        }
-        plugins {
-            javalite {
-                // The codegen for lite comes as a separate artifact
-                artifact = 'com.google.protobuf:protoc-gen-javalite:3.0.0'
-            }
-        }
-        generatedFilesBaseDir = "$projectDir/src/main/generated"
-        generateProtoTasks {
-            all().each { task ->
-                task.builtins {
-                    // In most cases you don't need the full Java output
-                    // if you use the lite output.
-                    // remove java
-                }
-                task.plugins {
-                    javalite { }
-                }
-            }
-        }
-    }
- */
+
+//protobuf {
+//    protoc {
+//        // You still need protoc like in the non-Android case
+//        artifact = 'com.google.protobuf:protoc:3.7.0'
+//    }
+//    plugins {
+//        javalite {
+//            // The codegen for lite comes as a separate artifact
+//            artifact = 'com.google.protobuf:protoc-gen-javalite:3.0.0'
+//        }
+//    }
+//    generatedFilesBaseDir = "$projectDir/src/main/generated"
+//    generateProtoTasks {
+//        all().each { task ->
+//            task.builtins {
+//                // In most cases you don't need the full Java output
+//                // if you use the lite output.
+//                // remove java
+//            }
+//            task.plugins {
+//                javalite { }
+//            }
+//        }
+//    }
+//}
